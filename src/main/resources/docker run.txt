@@ -3,4 +3,6 @@ docker run --name MicroService
             -e POSTGRES_PASSWORD=123123
             -e POSTGRES_DB=micro1
             -p 5432:5432
-            -d postgres */
+            -d postgres
+
+
