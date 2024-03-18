@@ -17,9 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_game")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idGame;
     private String creator;
     private String sport;

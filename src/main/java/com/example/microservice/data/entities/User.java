@@ -17,8 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdUser;
     private String email;
     private String name;

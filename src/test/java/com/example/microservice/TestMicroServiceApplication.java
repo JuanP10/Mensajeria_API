@@ -16,6 +16,7 @@ public class TestMicroServiceApplication {
         return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
     }
 
+
     public static void main(String[] args) {
         SpringApplication.from(MicroServiceApplication::main).with(TestMicroServiceApplication.class).run(args);
     }

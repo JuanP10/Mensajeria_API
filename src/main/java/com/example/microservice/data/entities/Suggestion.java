@@ -22,13 +22,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Suggestion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     @Column(name = "create_at")
     private LocalDateTime createAt;
-    @ManyToOne
-    @JoinColumn(name = "idUser")
+    @ManyToOne @JoinColumn(name = "idUser")
     private User user;
 }
