@@ -1,6 +1,6 @@
 package com.example.microservice.data.mappers;
 
-import com.example.microservice.data.dtos.UserDto;
+import com.example.microservice.data.dtos.UserDtoSend;
 import com.example.microservice.data.entities.User;
 import org.mapstruct.Mapper;
 
@@ -9,6 +9,6 @@ import org.mapstruct.Mapper;
 )
 public interface UserMapper {
 
-    User userDtoToUser (UserDto userDto);
-    UserDto userToUserDto (User user);
+    User userDtoToUser (UserDtoSend userDto);
+    UserDtoSend userToUserDto (User user);
 }

@@ -3,18 +3,20 @@ package com.example.microservice.data.controllers;
 import com.example.microservice.data.entities.User;
 import com.example.microservice.data.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     private  final UserService userService;
-
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
     @GetMapping("{userId}")

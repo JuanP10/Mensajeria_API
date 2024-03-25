@@ -35,4 +35,10 @@ public class UserServiceImp implements UserService {
         User User = this.userRepository.getById(id);
         return User;
     }
+
+    @Override
+    public User createUser(User user) {
+        User UserSaveDb = this.userRepository.save(user);
+        return UserSaveDb;
+    }
 }

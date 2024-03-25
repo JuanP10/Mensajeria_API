@@ -18,6 +18,7 @@ import java.util.List;
 @Builder
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_user")
     private Long IdUser;
     private String email;
     private String name;

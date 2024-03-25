@@ -1,6 +1,6 @@
 package com.example.microservice.data.mappers;
 
-import com.example.microservice.data.dtos.MessageDto;
+import com.example.microservice.data.dtos.MessageDtoSave;
 import com.example.microservice.data.entities.Message;
 import org.mapstruct.Mapper;
 
@@ -9,6 +9,6 @@ import org.mapstruct.Mapper;
 )
 public interface MessageMapper {
 
-    MessageDto messageToMessageDto (Message message);
-    Message messageDtoToMessage (MessageDto messageDto);
+    MessageDtoSave messageToMessageDto (Message message);
+    Message messageDtoToMessage (MessageDtoSave messageDto);
 }
