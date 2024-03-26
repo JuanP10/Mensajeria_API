@@ -7,6 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long>{
-    @Query("SELECT m FROM Message m WHERE m.creator = ?1")
-    List<Message> findByIdUser(Long idUser);
+
+    List<Message> findAllByIdUser(Long idUser);
+
+    List<Message> findAllByCreator (String creator);
+
+    List<Message> findAllByDestinatary (String destinatary);
+
+    List<Message> findAllByCreatorAndDestinatary (String creator, String destinatary);
+
 }

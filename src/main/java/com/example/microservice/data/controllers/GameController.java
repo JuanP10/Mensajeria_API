@@ -1,14 +1,11 @@
 package com.example.microservice.data.controllers;
 
 import com.example.microservice.data.entities.Game;
-import com.example.microservice.data.entities.User;
 import com.example.microservice.data.services.GameService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,18 +17,24 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    @PostMapping
+    public Game createGame(@RequestBody Game game) {
+        return gameService.createGame(game.getCreator(), game.getSport(), game.getCity(), game.getProvince(), LocalDate.from(game.getDate()), game.getStartTime(), game.getParticipants(), game.getSubs(), game.getComents());
+    }
+
     @GetMapping
-    public ResponseEntity<User> getAll(){
-        return ResponseEntity.ok().body((User) this.gameService.getAll());
+    public List<Game> getAllGames() {
+        return gameService.getAllGames();
     }
 
-    @GetMapping("/sport")
-    public Optional<Game> getAllBySport(String sport){
-        return this.gameService.findAllBySport(sport);
+    @GetMapping("/city/{city}/date/{date}")
+    public Optional<Game> getGamesByCityAndDate(@PathVariable String city, @PathVariable String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return gameService.getGamesByCityAndDate(city, localDate);
     }
 
-    @GetMapping("/date")
-    public Optional<Game> getAllByDate(LocalDate date){
-        return this.gameService.findAllByDate(date);
+    @DeleteMapping
+    public void deleteGame(@RequestParam Long gameId) {
+        gameService.deleteGame(gameId);
     }
 }

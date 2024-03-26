@@ -1,5 +1,7 @@
 package com.example.microservice.data.services.Implements;
 
+import com.example.microservice.data.dtos.UserDtoSave;
+import com.example.microservice.data.dtos.UserDtoSend;
 import com.example.microservice.data.entities.User;
 import com.example.microservice.data.mappers.UserMapper;
 import com.example.microservice.data.repositories.UserRepository;
@@ -15,30 +17,42 @@ public class UserServiceImp implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    @Override
-    public List<User> findAllByNameAndLastName(String name, String lastName) {
-        return this.userRepository.findByNameAndlastName(name, lastName);
-    }
-
-    @Override
-    public List<User> findByEmail(String email) {
-        return (List<User>) this.userRepository.findByEmail(email);
-    }
 
     @Override
     public List<User> getAll() {
-        return this.userRepository.findAll();
+        return userRepository.findAll();
     }
 
     @Override
-    public User getUserById(Long id) {
-        User User = this.userRepository.getById(id);
-        return User;
+    public UserDtoSend createUser(UserDtoSend userDtoSend) {
+        User user = userMapper.toEntity(userDtoSend);
+        user = userRepository.save(user);
+        return userMapper.toDtoSend(user);
+    }
+
+
+    @Override
+    public UserDtoSend createUser(UserDtoSave userDtoSave) {
+        User user = userMapper.toEntity(userDtoSave);
+        user = userRepository.save(user);
+        return userMapper.toDtoSend(user);
     }
 
     @Override
-    public User createUser(User user) {
-        User UserSaveDb = this.userRepository.save(user);
-        return UserSaveDb;
+    public List<UserDtoSend> getAllUsersToSend() {
+        List<User> users = userRepository.findAll();
+        return userMapper.toDtoSendList(users);
+    }
+
+    @Override
+    public List<UserDtoSave> getAllUsersToSave() {
+        List<User> users = userRepository.findAll();
+        return userMapper.toDtoSaveList(users);
+    }
+
+
+    @Override
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
     }
 }

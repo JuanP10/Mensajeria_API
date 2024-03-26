@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,21 +18,34 @@ public class GameServiceImp implements GameService {
     private final GameRepository gameRepository;
     private final GameMapper gameMapper;
 
-    @Override
-    public Optional<Game> findAllBySport(String sport) {
-        return this.gameRepository.findAllBySport(sport);
-    }
-
 
     @Override
-    public Optional<Game> findAllByDate(LocalDate date) {
-        return this.gameRepository.findAllByByDate(LocalDate.parse(String.valueOf(date)));
+    public Game createGame(String creator, String sport, String city, String province, LocalDate date, LocalDateTime startTime, Integer participants, Integer subs, String comments) {
+        Game newGame = new Game();
+        newGame.setCreator(creator);
+        newGame.setSport(sport);
+        newGame.setCity(city);
+        newGame.setProvince(province);
+        newGame.setDate(LocalDateTime.from(date));
+        newGame.setStartTime(startTime);
+        newGame.setParticipants(participants);
+        newGame.setSubs(subs);
+        newGame.setComents(comments);
+        return gameRepository.save(newGame);
     }
 
     @Override
-    public List<Game> getAll() {
-        return this.gameRepository.findAll();
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
     }
 
+    @Override
+    public Optional<Game> getGamesByCityAndDate(String city, LocalDate date) {
+        return gameRepository.findAllByCityAndDate(city, date);
+    }
 
+    @Override
+    public void deleteGame(Long gameId) {
+        gameRepository.deleteById(gameId);
+    }
 }
