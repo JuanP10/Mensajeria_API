@@ -23,21 +23,27 @@ public class UserController {
         return userService.createUser(userDtoSave);
     }
 
+    @GetMapping("/{userId}")
+    public UserDtoSend getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+    @GetMapping("/name&lastName")
+    public List<UserDtoSend> getUsersByNameAndLastName(@RequestParam String name, @RequestParam String lastName) {
+        return userService.getUsersByNameAndLastName(name, lastName);
+    }
+
+    @GetMapping("/email")
+    public User getUserByEmail(@RequestParam String email) {
+        return userService.getUserByEmail(email);
+    }
+
 
     @GetMapping("/all")
     public ResponseEntity<User> getAll() {
-        return ResponseEntity.ok().body((User) this.userService.getAll());
+        return ResponseEntity.ok().body((User) this.userService.getAllUsers());
     }
 
-    @GetMapping("/allToSend")
-    public List<UserDtoSend> getAllUsersToSend() {
-        return userService.getAllUsersToSend();
-    }
-
-    @GetMapping("/allToSave")
-    public List<UserDtoSave> getAllUsersToSave() {
-        return userService.getAllUsersToSave();
-    }
 
     @DeleteMapping
     public void deleteUser(@RequestParam Long userId) {

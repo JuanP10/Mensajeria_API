@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "partidos")
+@Table(name = "juegos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

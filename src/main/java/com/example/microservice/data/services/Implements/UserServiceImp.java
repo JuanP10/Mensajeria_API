@@ -6,6 +6,7 @@ import com.example.microservice.data.entities.User;
 import com.example.microservice.data.mappers.UserMapper;
 import com.example.microservice.data.repositories.UserRepository;
 import com.example.microservice.data.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,19 +20,6 @@ public class UserServiceImp implements UserService {
 
 
     @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
-    }
-
-    @Override
-    public UserDtoSend createUser(UserDtoSend userDtoSend) {
-        User user = userMapper.toEntity(userDtoSend);
-        user = userRepository.save(user);
-        return userMapper.toDtoSend(user);
-    }
-
-
-    @Override
     public UserDtoSend createUser(UserDtoSave userDtoSave) {
         User user = userMapper.toEntity(userDtoSave);
         user = userRepository.save(user);
@@ -39,15 +27,28 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public List<UserDtoSend> getAllUsersToSend() {
+    public List<UserDtoSend> getAllUsers() {
         List<User> users = userRepository.findAll();
         return userMapper.toDtoSendList(users);
     }
 
+
     @Override
-    public List<UserDtoSave> getAllUsersToSave() {
-        List<User> users = userRepository.findAll();
-        return userMapper.toDtoSaveList(users);
+    public UserDtoSend getUserById(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + userId));
+        return userMapper.toDtoSend(user);
+    }
+
+    @Override
+    public List<UserDtoSend> getUsersByNameAndLastName(String name, String lastName) {
+        List<User> users = userRepository.findByNameAndLastName(name, lastName);
+        return userMapper.toDtoSendList(users);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 

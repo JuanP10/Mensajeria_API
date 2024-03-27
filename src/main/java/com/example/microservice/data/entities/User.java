@@ -38,7 +38,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Message> messages;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "list_games", joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "lista juegos", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id"))
     private List<Game> listGames = new ArrayList<>();
 }

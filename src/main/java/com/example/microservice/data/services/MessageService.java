@@ -6,10 +6,18 @@ import java.util.List;
 
 public interface MessageService {
     Message createMessage(String creator, String destinatary, String content);
-    List<Message> getAllMessages();
-    List<Message> getMessagesByCreator(String creator);
 
-    List<Message> getMessagesByDestinatary(String destinatary);
+    List<Message> findAllByIdUser(Long idUser);
+    List<Message> getAllMessages();
+    List<Message> getAllMessagesByCreator(String creator);
+
+    List<Message> getAllMessagesByDestinatary (String destinatary);
+
+    List<Message> getAllMessagesByCreatorAndDestinatary(String creator, String destinatary);
 
     void deleteMessage(Long messageId);
+
+
+
+
 }
