@@ -4,6 +4,8 @@ import com.example.microservice.data.entities.Suggestion;
 import com.example.microservice.data.entities.User;
 import com.example.microservice.data.services.SuggestionService;
 import com.example.microservice.data.services.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,11 +31,12 @@ public class SuggestionController {
 
     @GetMapping("/user/{userId}")
     public List<Suggestion> getSuggestionsByUser(@PathVariable Long userId) {
-        return suggestionService.getSuggestionsByUser(userId);
+        return suggestionService.getSuggestionsByIdSuggestion(userId);
     }
 
-    @DeleteMapping
-    public void deleteSuggestion(@RequestParam Long suggestionId) {
-        suggestionService.deleteSuggestion(suggestionId);
+    @DeleteMapping("/{idSuggestion}")
+    public ResponseEntity<Void> deleteSuggestion (@PathVariable Long idSuggestion) {
+        suggestionService.deleteSuggestion(idSuggestion);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

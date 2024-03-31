@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface SuggestionsRepository extends JpaRepository<Suggestion, Long> {
 
-    List<Suggestion> findAllById(Long id);
+    List<Suggestion> findAllByIdSuggestion (Long idSuggestion);
 }

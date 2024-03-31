@@ -8,7 +8,7 @@ import java.util.List;
 public interface SuggestionService {
     Suggestion createSuggestion(String description, User user);
     List<Suggestion> getAllSuggestions();
-    List<Suggestion> getSuggestionsByUser(Long id);
+    List<Suggestion> getSuggestionsByIdSuggestion(Long idSuggestion);
 
-    void deleteSuggestion(Long suggestionId);
+    void deleteSuggestion(Long idSuggestion);
 }

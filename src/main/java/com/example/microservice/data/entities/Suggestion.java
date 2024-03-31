@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Suggestion {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idSuggestion;
     private String description;
     @Column(name = "create_at")
     private LocalDateTime createAt;

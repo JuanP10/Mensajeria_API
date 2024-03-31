@@ -2,7 +2,6 @@ package com.example.microservice.data.services.Implements;
 
 import com.example.microservice.data.entities.Suggestion;
 import com.example.microservice.data.entities.User;
-import com.example.microservice.data.mappers.SuggestionMapper;
 import com.example.microservice.data.repositories.SuggestionsRepository;
 import com.example.microservice.data.services.SuggestionService;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,6 @@ import java.util.List;
 
 public class SuggestionServiceImp implements SuggestionService {
     private final SuggestionsRepository suggestionsRepository;
-    private final SuggestionMapper suggestionMapper;
 
     @Override
     public Suggestion createSuggestion(String description, User user) {
@@ -31,12 +29,12 @@ public class SuggestionServiceImp implements SuggestionService {
     }
 
     @Override
-    public List<Suggestion> getSuggestionsByUser(Long id) {
-        return suggestionsRepository.findAllById(id);
+    public List<Suggestion> getSuggestionsByIdSuggestion(Long idSuggestion) {
+        return suggestionsRepository.findAllByIdSuggestion(idSuggestion);
     }
 
     @Override
-    public void deleteSuggestion(Long suggestionId) {
-        suggestionsRepository.deleteById(suggestionId);
+    public void deleteSuggestion(Long idSuggestion) {
+        suggestionsRepository.deleteById(idSuggestion);
     }
 }
