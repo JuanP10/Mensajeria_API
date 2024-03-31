@@ -5,6 +5,7 @@ import com.example.microservice.data.dtos.UserDtoSend;
 import com.example.microservice.data.entities.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 import java.util.List;
@@ -19,20 +20,17 @@ public interface UserMapper {
 
     })
 
-    UserDtoSend toDtoSend(User user);
+
+    User userDtoSaveToUser(UserDtoSave userDtoSave);
+    UserDtoSend userToUserDtoSend(User user);
+
+
 
     List<UserDtoSend> toDtoSendList(List<User> users);
 
-    @Mappings({
-            @Mapping(target = "createAt", source = "createAt", dateFormat = "dd-MM-yyyy"),
-            // Otros mapeos si es necesario
-    })
-    User toEntity(UserDtoSave userDtoSave);
-
-    UserDtoSave toDtoSave(User user);
-
-    List<UserDtoSave> toDtoSaveList(List<User> users);
 
 
-    User toEntity(UserDtoSend userDtoSend);
+
+    User updateUserFromDtoSave(@MappingTarget User user, UserDtoSave userDtoSave);
+
 }

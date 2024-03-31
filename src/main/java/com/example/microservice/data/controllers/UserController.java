@@ -4,6 +4,7 @@ import com.example.microservice.data.dtos.UserDtoSave;
 import com.example.microservice.data.dtos.UserDtoSend;
 import com.example.microservice.data.entities.User;
 import com.example.microservice.data.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,16 @@ public class UserController {
 
 
     @PostMapping
-    public UserDtoSend createUser(@RequestBody UserDtoSave userDtoSave) {
-        return userService.createUser(userDtoSave);
+    public ResponseEntity<UserDtoSend> createUser(@RequestBody UserDtoSave userDtoSave) {
+        UserDtoSend createdUser = userService.createUser(userDtoSave);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDtoSend> updateUser(@PathVariable Long userId, @RequestBody UserDtoSave userDtoSave) {
+        UserDtoSend updatedUser = userService.updateUserById(userId, userDtoSave);
+        return ResponseEntity.ok(updatedUser);
+    }
     @GetMapping("/{userId}")
     public UserDtoSend getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
@@ -40,13 +47,15 @@ public class UserController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<User> getAll() {
-        return ResponseEntity.ok().body((User) this.userService.getAllUsers());
+    public ResponseEntity<List<UserDtoSend>> getAllUsers() {
+        List<UserDtoSend> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
 
-    @DeleteMapping
-    public void deleteUser(@RequestParam Long userId) {
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

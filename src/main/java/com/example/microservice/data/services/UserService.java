@@ -8,14 +8,18 @@ import java.util.List;
 
 public interface UserService {
 
+    UserDtoSend createUser(UserDtoSave userDtoSave); //
+
     List<UserDtoSend> getAllUsers();
+    UserDtoSend updateUserById(Long userId, UserDtoSave userDtoSave);
+
+
     UserDtoSend getUserById(Long userId);
+
+
+    void deleteUser(Long userId);
 
     List<UserDtoSend> getUsersByNameAndLastName(String name, String lastName);
 
-    UserDtoSend createUser(UserDtoSave userDtoSave);
-
     User getUserByEmail(String email);
-
-    void deleteUser(Long userId);
 }

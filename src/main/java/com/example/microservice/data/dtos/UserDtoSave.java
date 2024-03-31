@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class UserDtoSave {
-    private Long id;
+    private Long idUser;
     private String email;
     private String name;
     private String lastName;
