@@ -15,9 +15,6 @@ public interface MessageService {
 
     List<Message> getAllMessagesByCreatorAndDestinatary(String creator, String destinatary);
 
-    void deleteMessage(Long messageId);
-
-
-
+    void deleteMessage(Long idMessage);
 
 }

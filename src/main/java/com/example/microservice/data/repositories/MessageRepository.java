@@ -18,4 +18,6 @@ public interface MessageRepository extends JpaRepository<Message, Long>{
 
     List<Message> findAllByCreatorAndDestinatary (String creator, String destinatary);
 
+
+
 }

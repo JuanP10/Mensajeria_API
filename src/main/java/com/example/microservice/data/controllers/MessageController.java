@@ -2,6 +2,8 @@ package com.example.microservice.data.controllers;
 
 import com.example.microservice.data.entities.Message;
 import com.example.microservice.data.services.MessageService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,9 +38,9 @@ public class MessageController {
         return messageService.getAllMessagesByCreator(creator);
     }
 
-    @GetMapping("/creator/{destinatary}")
+    @GetMapping("/destinatary/{destinatary}")
     public List<Message> getAllMessagesByDestinatary(@PathVariable String destinatary) {
-        return messageService.getAllMessagesByCreator(destinatary);
+        return messageService.getAllMessagesByDestinatary(destinatary);
     }
 
     @GetMapping("/creator/{creator}/destinatary/{destinatary}")
@@ -46,8 +48,9 @@ public class MessageController {
         return messageService.getAllMessagesByCreatorAndDestinatary(creator, destinatary);
     }
 
-    @DeleteMapping
-    public void deleteMessage(@RequestParam Long messageId) {
-        messageService.deleteMessage(messageId);
+    @DeleteMapping("/{idMessage}")
+    public ResponseEntity<Void> deleteMessage(@PathVariable Long idMessage) {
+        messageService.deleteMessage(idMessage);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
