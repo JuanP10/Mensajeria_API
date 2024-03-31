@@ -33,8 +33,8 @@ public class GameController {
         return gameService.getGamesByCityAndDate(city, localDate);
     }
 
-    @DeleteMapping
-    public void deleteGame(@RequestParam Long gameId) {
-        gameService.deleteGame(gameId);
+    @DeleteMapping("/{idGame}")
+    public void deleteGame(@PathVariable Long idGame) {
+        gameService.deleteGame(idGame);
     }
 }

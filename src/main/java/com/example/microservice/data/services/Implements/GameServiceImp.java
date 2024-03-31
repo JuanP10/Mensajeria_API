@@ -26,7 +26,7 @@ public class GameServiceImp implements GameService {
         newGame.setSport(sport);
         newGame.setCity(city);
         newGame.setProvince(province);
-        newGame.setDate(LocalDateTime.from(date));
+        newGame.setDate(date);
         newGame.setStartTime(startTime);
         newGame.setParticipants(participants);
         newGame.setSubs(subs);
@@ -45,7 +45,7 @@ public class GameServiceImp implements GameService {
     }
 
     @Override
-    public void deleteGame(Long gameId) {
-        gameRepository.deleteById(gameId);
+    public void deleteGame(Long idGame) {
+        gameRepository.deleteById(idGame);
     }
 }

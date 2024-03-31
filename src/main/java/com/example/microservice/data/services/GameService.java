@@ -12,6 +12,6 @@ public interface GameService {
     List<Game> getAllGames();
     Optional<Game> getGamesByCityAndDate(String city, LocalDate date);
 
-    void deleteGame(Long gameId);
+    void deleteGame(Long idGame);
 
 }
