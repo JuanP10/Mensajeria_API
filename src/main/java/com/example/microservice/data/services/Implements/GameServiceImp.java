@@ -16,8 +16,6 @@ import java.util.Optional;
 @Service
 public class GameServiceImp implements GameService {
     private final GameRepository gameRepository;
-    private final GameMapper gameMapper;
-
 
     @Override
     public Game createGame(String creator, String sport, String city, String province, LocalDate date, LocalDateTime startTime, Integer participants, Integer subs, String comments) {
