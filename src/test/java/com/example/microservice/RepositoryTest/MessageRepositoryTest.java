@@ -63,8 +63,8 @@ public class MessageRepositoryTest extends AbstractIntegrationDBTest {
     @Test
     void findUserById(){
         Message message = saveMessage();
-        List<Message> messages = messageRepository.findByIdUser(message.getUser().getIdUser());
-        assertThat(messageRepository.findByIdUser(message.getUser().getIdUser())).isNotEmpty();
+        List<Message> messages = messageRepository.findAllByUserId(message.getUser().getIdUser());
+        assertThat(messageRepository.findAllByUserId(message.getUser().getIdUser())).isNotEmpty();
         assertThat(messages.get(0).getUser().getIdUser()).isEqualTo(message.getUser().getIdUser());
     }
 }

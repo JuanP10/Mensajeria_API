@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +28,7 @@ public class GameRepositoryTest extends AbstractIntegrationDBTest {
         Game game = Game.builder()
                         .city("Bogota")
                         .coments("Juego")
-                        .date(LocalDateTime.now())
+                        .date(LocalDate.parse("2021-10-10"))
                         .sport("Futbol")
                         .subs(0)
                         .participants(0)

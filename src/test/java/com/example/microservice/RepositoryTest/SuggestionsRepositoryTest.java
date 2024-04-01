@@ -30,6 +30,6 @@ public class SuggestionsRepositoryTest extends AbstractIntegrationDBTest {
                 .description("Juego")
                 .build();
         suggestionsRepository.save(suggestion);
-        Assert.assertNotNull(suggestion.getId());
+        Assert.assertNotNull(suggestion.getIdSuggestion());
     }
 }

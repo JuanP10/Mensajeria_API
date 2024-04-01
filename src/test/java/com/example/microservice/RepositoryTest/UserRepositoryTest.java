@@ -52,7 +52,7 @@ public class UserRepositoryTest extends AbstractIntegrationDBTest {
     @Test
     void findByNameAndlastName() {
         MockUser();
-        List<User> userList= userRepository.findByNameAndlastName("Juan", "Perez");
+        List<User> userList= userRepository.findByNameAndLastName("Juan", "Perez");
         assertThat(userList).isNotEmpty();
         assertThat(userList.get(0).getName()).isEqualTo("Juan");
     }
